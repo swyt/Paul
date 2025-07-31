@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Paul is 50 – Who Else is 50?</title>
+<style>
+        body {
+            background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/retina_wood.png');
+            font-family: 'Courier New', Courier, monospace;
+            color: #fff8dc;
+            background-color: #8b4513;
+            background-size: cover;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Lucida Console', Monaco, monospace;
+            color: #ffcc00;
+            text-shadow: 2px 2px #000;
+            font-size: 2.5em;
+        }
+        .question {
+            margin: 30px auto;
+            padding: 20px;
+            border: 2px solid #ffcc00;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+        }
+        .celebrity-photo {
+            max-width: 300px;
+            border: 5px solid #ffcc00;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        button {
+            font-family: 'Lucida Console', Monaco, monospace;
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ffa500;
+        }
+        #result {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;display=swap" rel="stylesheet"/><style>
+body {
+    background-image: url('images/retro_background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-shadow: 1px 1px 2px black;
+}
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+    text-align: center;
+    margin-top: 40px;
+}
+</style></head>
+<body>
+<h1>Paul is 50 – Who Else is 50?</h1>
+<div id="quiz-container"></div>
+<div id="result"></div>
+<script>
+        const questions = [
+            {name: "Angelina Jolie", dob: "June 4, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Angelina_Jolie_2_June_2014_%28cropped%29.jpg"},
+            {name: "David Beckham", dob: "May 2, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/David_Beckham_2014.jpg"},
+            {name: "Pedro Pascal", dob: "April 2, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Pedro_Pascal_by_Gage_Skidmore_2.jpg"},
+            {name: "Charlize Theron", dob: "August 7, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Charlize_Theron_Cannes_2015_2.jpg"},
+            {name: "50 Cent", dob: "July 6, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/50_Cent_2018.jpg"},
+            {name: "Drew Barrymore", dob: "February 22, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Drew_Barrymore_2014.jpg"},
+            {name: "Tobey Maguire", dob: "June 27, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Tobey_Maguire_2014.jpg"},
+            {name: "Eva Longoria", dob: "March 15, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Eva_Longoria_Cannes_2015.jpg"},
+            {name: "Jamie Oliver", dob: "May 27, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Jamie_Oliver_%28cropped%29.jpg"},
+            {name: "Mel B", dob: "May 29, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Mel_B_2017.jpg"},
+            {name: "Robert Downey Jr.", dob: "April 4, 1965", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/5/50/Robert_Downey_Jr_2014_Comic_Con_%28cropped%29.jpg"},
+            {name: "Sandra Bullock", dob: "July 26, 1964", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Sandra_Bullock_2013.jpg"},
+            {name: "Keanu Reeves", dob: "September 2, 1964", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Keanu_Reeves_2013.jpg"},
+            {name: "Sarah Jessica Parker", dob: "March 25, 1965", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Sarah_Jessica_Parker_2013.jpg"},
+            {name: "Chris Rock", dob: "February 7, 1965", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Chris_Rock_2012.jpg"},
+            {name: "Kim Kardashian", dob: "October 21, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Kim_Kardashian_2019.jpg"},
+            {name: "Jake Gyllenhaal", dob: "December 19, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Jake_Gyllenhaal_2019.jpg"},
+            {name: "Ryan Gosling", dob: "November 12, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Ryan_Gosling_2018.jpg"},
+            {name: "Kristen Bell", dob: "July 18, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Kristen_Bell_2013.jpg"},
+            {name: "Zooey Deschanel", dob: "January 17, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Zooey_Deschanel_2012.jpg"}
+        ];
+
+        let current = 0;
+        let score = 0;
+        questions.sort(() => Math.random() - 0.5);
+
+        function showQuestion() {
+            if (current >= questions.length) {
+                document.getElementById("quiz-container").innerHTML = "";
+                document.getElementById("result").innerHTML = `You scored ${score} out of ${questions.length}!`;
+                return;
+            }
+            const q = questions[current];
+            document.getElementById("quiz-container").innerHTML = `
+                <div class="question">
+                    <h2>${q.name}</h2>
+                    <img src="${q.img}" class="celebrity-photo"><br>
+                    <button onclick="answer(true)">True</button>
+                    <button onclick="answer(false)">False</button>
+                </div>
+            `;
+        }
+
+        function answer(userAnswer) {
+            const q = questions[current];
+            const correct = userAnswer === q.is50;
+            if (correct) score++;
+            const feedback = correct ? "✅ Correct!" : "❌ Wrong!";
+            document.getElementById("quiz-container").innerHTML += `
+                <div><strong>${feedback}</strong><br>Date of Birth: ${q.dob}</div>
+            `;
+            current++;
+            setTimeout(showQuestion, 2000);
+        }
+
+        showQuestion();
+    </script>
+</body>
+</html>
