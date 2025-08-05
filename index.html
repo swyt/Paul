@@ -72,69 +72,144 @@ h1 {
     text-align: center;
     margin-top: 40px;
 }
-</style></head>
+</style>
+<style>
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+button:hover {
+  animation: bounce 0.5s;
+}
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.slide-in {
+  animation: slideIn 0.8s ease-out;
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.emoji {
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+</style>
+</head>
 <body>
 <h1>Paul is 50 – Who Else is 50?</h1>
 <div id="quiz-container"></div>
 <div id="result"></div>
 <script>
-        const questions = [
-            {name: "Angelina Jolie", dob: "June 4, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Angelina_Jolie_2_June_2014_%28cropped%29.jpg"},
-            {name: "David Beckham", dob: "May 2, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/David_Beckham_2014.jpg"},
-            {name: "Pedro Pascal", dob: "April 2, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Pedro_Pascal_by_Gage_Skidmore_2.jpg"},
-            {name: "Charlize Theron", dob: "August 7, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Charlize_Theron_Cannes_2015_2.jpg"},
-            {name: "50 Cent", dob: "July 6, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/50_Cent_2018.jpg"},
-            {name: "Drew Barrymore", dob: "February 22, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Drew_Barrymore_2014.jpg"},
-            {name: "Tobey Maguire", dob: "June 27, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Tobey_Maguire_2014.jpg"},
-            {name: "Eva Longoria", dob: "March 15, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Eva_Longoria_Cannes_2015.jpg"},
-            {name: "Jamie Oliver", dob: "May 27, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Jamie_Oliver_%28cropped%29.jpg"},
-            {name: "Mel B", dob: "May 29, 1975", is50: true, img: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Mel_B_2017.jpg"},
-            {name: "Robert Downey Jr.", dob: "April 4, 1965", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/5/50/Robert_Downey_Jr_2014_Comic_Con_%28cropped%29.jpg"},
-            {name: "Sandra Bullock", dob: "July 26, 1964", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Sandra_Bullock_2013.jpg"},
-            {name: "Keanu Reeves", dob: "September 2, 1964", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Keanu_Reeves_2013.jpg"},
-            {name: "Sarah Jessica Parker", dob: "March 25, 1965", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Sarah_Jessica_Parker_2013.jpg"},
-            {name: "Chris Rock", dob: "February 7, 1965", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Chris_Rock_2012.jpg"},
-            {name: "Kim Kardashian", dob: "October 21, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Kim_Kardashian_2019.jpg"},
-            {name: "Jake Gyllenhaal", dob: "December 19, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Jake_Gyllenhaal_2019.jpg"},
-            {name: "Ryan Gosling", dob: "November 12, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Ryan_Gosling_2018.jpg"},
-            {name: "Kristen Bell", dob: "July 18, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Kristen_Bell_2013.jpg"},
-            {name: "Zooey Deschanel", dob: "January 17, 1980", is50: false, img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Zooey_Deschanel_2012.jpg"}
-        ];
+    const questions = [
+        {name: "Angelina Jolie", dob: "June 4, 1975", is50: true, img: "images/angelina.jpg"},
+        {name: "David Beckham", dob: "May 2, 1975", is50: true, img: "images/david.jpg"},
+        {name: "Pedro Pascal", dob: "April 2, 1975", is50: true, img: "images/pedro.jpg"},
+        {name: "Charlize Theron", dob: "August 7, 1975", is50: true, img: "images/charlize.jpg"},
+        {name: "50 Cent", dob: "July 6, 1975", is50: true, img: "images/50.jpg"},
+        {name: "Drew Barrymore", dob: "February 22, 1975", is50: true, img: "images/drew.jpg"},
+        {name: "Tobey Maguire", dob: "June 27, 1975", is50: true, img: "images/tobey.jpg"},
+        {name: "Eva Longoria", dob: "March 15, 1975", is50: true, img: "images/eva.jpg"},
+        {name: "Jamie Oliver", dob: "May 27, 1975", is50: true, img: "images/jamie.jpg"},
+        {name: "Mel B", dob: "May 29, 1975", is50: true, img: "images/mel.jpg"},
+        {name: "Robert Downey Jr.", dob: "April 4, 1965", is50: false, img: "images/robert.jpg"},
+        {name: "Sandra Bullock", dob: "July 26, 1964", is50: false, img: "images/sandra.jpg"},
+        {name: "Keanu Reeves", dob: "September 2, 1964", is50: false, img: "images/keanu.jpg"},
+        {name: "Sarah Jessica Parker", dob: "March 25, 1965", is50: false, img: "images/sarah.jpg"},
+        {name: "Chris Rock", dob: "February 7, 1965", is50: false, img: "images/chris.jpg"},
+        {name: "Kim Kardashian", dob: "October 21, 1980", is50: false, img: "images/kim.jpg"},
+        {name: "Jake Gyllenhaal", dob: "December 19, 1980", is50: false, img: "images/jake.jpg"},
+        {name: "Ryan Gosling", dob: "November 12, 1980", is50: false, img: "images/ryan.jpg"},
+        {name: "Kristen Bell", dob: "July 18, 1980", is50: false, img: "images/kristen.jpg"},
+        {name: "Zooey Deschanel", dob: "January 17, 1980", is50: false, img: "images/zooey.jpg"}
+    ];
 
-        let current = 0;
-        let score = 0;
+    let current = 0;
+    let score = 0;
+    questions.sort(() => Math.random() - 0.5);
+
+    function showQuestion() {
+        if (current >= questions.length) {
+            showResults();
+            return;
+        }
+        const q = questions[current];
+        document.getElementById("quiz-container").innerHTML = `
+            <div class="question">
+                <h2>${q.name}</h2>
+                <img src="${q.img}" class="celebrity-photo"><br>
+                <button onclick="answer(true)">True</button>
+                <button onclick="answer(false)">False</button>
+            </div>
+        `;
+    }
+
+    function answer(userAnswer) {
+        const q = questions[current];
+        const correct = userAnswer === q.is50;
+        if (correct) score++;
+        const feedback = correct ? "✅ Correct!" : "❌ Wrong!";
+        document.getElementById("quiz-container").innerHTML += `
+            <div><strong>${feedback}</strong><br>Date of Birth: ${q.dob}</div>
+        `;
+        current++;
+        setTimeout(showQuestion, 2000);
+    }
+
+    function showResults() {
+        const percent = Math.round((score / questions.length) * 100);
+        let message = "";
+        let color = "";
+        if (percent <= 30) {
+            message = "😅 You must be a Gen Zer";
+            color = "#ff4d4d";
+        } else if (percent <= 50) {
+            message = "🙂 Not bad boomer";
+            color = "#ffa64d";
+        } else if (percent <= 80) {
+            message = "😎 Hit or Miss";
+            color = "#ffff66";
+        } else if (percent < 100) {
+            message = "🧠 A True Gen Xer – the force is strong with this one";
+            color = "#66ff66";
+        } else {
+            message = "🌟 Jedi status!";
+            color = "#66ccff";
+        }
+
+        document.getElementById("quiz-container").innerHTML = "";
+        document.getElementById("result").innerHTML = `
+            <div style="background-color:${color}; padding:20px; border-radius:10px;">
+                <h2>You scored ${score} out of ${questions.length} – that's ${percent}% correct!</h2>
+                <p>${message}</p>
+                <button onclick="restartQuiz()">🔄 Restart Quiz</button>
+            </div>
+        `;
+    }
+
+    function restartQuiz() {
+        current = 0;
+        score = 0;
         questions.sort(() => Math.random() - 0.5);
-
-        function showQuestion() {
-            if (current >= questions.length) {
-                document.getElementById("quiz-container").innerHTML = "";
-                document.getElementById("result").innerHTML = `You scored ${score} out of ${questions.length}!`;
-                return;
-            }
-            const q = questions[current];
-            document.getElementById("quiz-container").innerHTML = `
-                <div class="question">
-                    <h2>${q.name}</h2>
-                    <img src="${q.img}" class="celebrity-photo"><br>
-                    <button onclick="answer(true)">True</button>
-                    <button onclick="answer(false)">False</button>
-                </div>
-            `;
-        }
-
-        function answer(userAnswer) {
-            const q = questions[current];
-            const correct = userAnswer === q.is50;
-            if (correct) score++;
-            const feedback = correct ? "✅ Correct!" : "❌ Wrong!";
-            document.getElementById("quiz-container").innerHTML += `
-                <div><strong>${feedback}</strong><br>Date of Birth: ${q.dob}</div>
-            `;
-            current++;
-            setTimeout(showQuestion, 2000);
-        }
-
+        document.getElementById("result").innerHTML = "";
         showQuestion();
-    </script>
+    }
+
+    showQuestion();
+</script>
 </body>
 </html>
